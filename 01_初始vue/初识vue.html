@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>初识vue</title>
+  <script src="../js/vue (1).js"></script>
+</head>
+
+<body>
+  <div class="root">
+    <h1>hello {{name}}, {{address.toUpperCase()}}</h1>
+  </div>
+  <!-- <div class="root">
+    <h1>hello {{name}}</h1>
+  </div> -->
+
+  <!-- <div class="root">
+    <h1>hello {{name}}, {{address}}</h1>
+  </div> -->
+
+
+  <script>
+    // 设置为 false 以阻止 vue 在启动时生成生产提示。
+    Vue.config.productionTip = false
+
+    // 创建Vue实例
+    new Vue({
+      el: '.root',//el用于指定当前Vue实例为哪个容器服务，值通常为css选择器字符串
+      //el: document.getElementById('root')
+      data: {
+        //data中用于存储数据，数据供el所指定的容器去使用，值我们暂时先写成一个对象
+        name: '初始22',
+        address:'bejing'
+      }
+    })
+    // new Vue({
+    //   el: '.root',//el用于指定当前Vue实例为哪个容器服务，值通常为css选择器字符串
+    //   //el: document.getElementById('root')
+    //   data: {
+    //     //data中用于存储数据，数据供el所指定的容器去使用，值我们暂时先写成一个对象
+    //     address: '初始22'
+
+    //   }
+    // })
+
+
+
+  </script>
+
+</body>
+
+</html>
