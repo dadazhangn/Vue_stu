@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.姓名案例_计算属性简写</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <h1>姓：<input type="text" v-model="firstName"><br></h1>
+    <h1>名：<input type="text" v-model="lastName"><br></h1>
+    <hr>
+    <!-- 只要姓前三个 -->
+    <h1>名字：<span>{{fullName}}</span></h1>
+  </div>
+
+</body>
+<script>
+  Vue.config.productionTip = false
+  const vm = new Vue({
+    el: '#root',
+    data: {
+      // 属性
+      firstName: '张',
+      lastName: '大'
+    },
+    computed: {
+      //计算属性
+      // fullName: {
+      //   get() {
+      //     console.log('get被调用');
+      //     return this.firstName.slice(0, 3) + '-' + this.lastName
+      //   },
+      //   //set什么时候调用? 当fullName被修改时。
+      //   set(value) {
+      //     console.log('set', value);
+      //     const arr = value.split('-')
+      //     this.firstName = arr[0]
+      //     this.lastName = arr[1]
+      //   }
+
+      // }
+      //简写 只有考虑获取而不考虑修改的时候才能简写
+      fullName() {
+        console.log('get被调用');
+        return this.firstName.slice(0, 3) + '-' + this.lastName
+      }
+    }
+  })
+
+</script>
+
+</html>

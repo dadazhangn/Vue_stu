@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>姓名案例_插值语法实现</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="root">
+    <h1>姓：<input type="text" v-model="firstName"><br></h1>
+    <h1>名：<input type="text" v-model="lastName"><br></h1>
+    <hr>
+    <!-- 只要姓前三个 -->
+    <h1>名字：<span>{{firstName.slice(0,3)}}-{{lastName}}</span></h1> 
+  </div>
+
+</body>
+<script>
+  Vue.config.productionTip = false
+  new Vue({
+    el:'#root',
+    data:{
+      firstName:'张',
+      lastName:'大'
+    }
+
+  })
+
+</script>
+
+</html>
