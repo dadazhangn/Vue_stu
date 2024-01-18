@@ -47,6 +47,9 @@
       fullName() {
         console.log('get被调用');
         return this.firstName.slice(0, 3) + '-' + this.lastName
+        // setTimeout(() => {
+        //   return this.firstName.slice(0, 3) + '-' + this.lastName
+        // }, 1000);
       }
     }
   })

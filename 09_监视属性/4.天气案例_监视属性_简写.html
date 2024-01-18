@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>4.天气案例_监视属性_简写</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+
+  <div id="root">
+    <h2>今天天气很{{info}}</h2>
+    <button @click="changeWether">切换天气</button>
+    <hr />
+    <!-- <h2>a的值是{{numbers.a}}</h2>
+    <button @click="numbers.a++">点我a+1</button>
+    <h2>b的值是{{numbers.b}}</h2>
+    <button @click="numbers.b++">点我b+1</button>
+    <hr/>
+    <button @click="numbers={a:333,b:444}">彻底替换掉numbers</button> -->
+  </div>
+
+</body>
+<script>
+  Vue.config.productionTip = false
+
+  const vm = new Vue({
+    el: '#root',
+    data: {
+      isHot: true,
+    },
+    computed: {
+      info() {
+        return this.isHot ? '炎热' : '凉爽'
+      }
+    },
+    methods: {
+      changeWether() {
+        return this.isHot = !this.isHot
+      }
+    },
+    watch: {
+      //   //正常写法
+      //   isHot:{
+      //      //初始化时让handler调用一下
+      //     immediate:true,
+      //     //handler什么时候调用？当isHot发生改变时。
+      //     handler(newValue, oldValue) {
+      //       console.log('isHot被修改', newValue, oldValue);
+      //     }
+      //   }
+      //简写，前提：watch中只有handler
+      // isHot(newValue, oldValue) {
+      //   console.log('isHot被修改', newValue, oldValue);
+      // }
+    }
+
+  })
+  //正常写法
+  // vm.$watch('isHot', {
+  //   immediate: true,
+  //   deep: true,
+  //   handler(newValue, oldValue) {
+  //     console.log('isHot被修改', newValue, oldValue);
+  //   }
+  // })
+  //简写
+  vm.$watch('isHot',function(newValue, oldValue) {
+    console.log('isHot被修改', newValue, oldValue, this);
+  }) 
+
+</script>
+
+</html>
