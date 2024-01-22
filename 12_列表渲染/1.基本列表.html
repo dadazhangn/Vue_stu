@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1.基本列表</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <!-- 
+        v-for指令:
+            1.用于展示列表数据
+            2.语法：v-for="(item, index) in xxx" :key="yyy"
+            3.可遍历：数组、对象、字符串（用的很少）、指定次数（用的很少）
+		-->
+  <div id="root">
+    <!-- 遍历数组 -->
+    <h2>人员列表</h2>
+    <ul>
+      <li v-for="(person, index) in persons" :key="index">
+        {{person.name}}-{{person.age}}
+      </li>
+      <!-- <li v-for="(person, index) in persons" :key="person.id"> in可以换成of
+        {{person.name}}-{{person.age}}
+      </li> -->
+    </ul>
+    <hr>
+    <!-- 遍历对象 -->
+    <h2>汽车信息</h2>
+    <ul>
+      <li v-for="(value, key) in car" :key="key">
+        {{key}}--{{value}}
+      </li>
+    </ul>
+    <hr>
+    <!-- 遍历字符串  （用得少）-->
+    <h2>遍历字符串</h2>
+    <ul>
+      <li v-for="(char, index) in str" :key="index">
+        {{char}}--{{index}}
+      </li>
+    </ul>
+    <hr>
+    <!-- 遍历指定次数 （用得少） -->
+    <h2>遍历指定次数</h2>
+    <ul>
+      <li v-for="(number, index) of 5" :key="index">
+        {{number}}--{{index}}
+      </li>
+    </ul>
+  </div>
+
+</body>
+<script>
+  Vue.config.productionTip = false
+
+  new Vue({
+    el:'#root',
+    data: {
+      persons:[
+        {id: '001', name: '张三',age: '18'},
+        {id: '002', name: '李三',age: '34'},
+        {id: '003', name: '大三',age: '65'},
+      ],
+      car:{
+        name:'奥迪',
+        price:'70万',
+        color:'黑色'
+      },
+      str: 'hello'
+    },
+  })
+
+</script>
+
+</html>
