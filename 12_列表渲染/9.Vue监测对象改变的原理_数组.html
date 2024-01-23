@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>8.Vue.set的使用</title>
+  <title>9.Vue监测对象改变的原理_数组</title>
   <script src="../js/vue.js"></script>
 </head>
 
@@ -13,7 +13,7 @@
     <h1>学校信息</h1>
     <h2>学校名称：{{name}}</h2>
     <h2>学校地址：{{address}}</h2>
-    <hr/>
+    <hr />
     <h1>学生信息</h1>
     <button @click="addSex">添加一个性别属性，默认值是男</button>
     <h2>学生姓名：{{student.name}}</h2>
@@ -25,37 +25,45 @@
         {{f.name}}-{{f.age}}
       </li>
     </ul>
+    <h2>爱好</h2>
+    <ul>
+      <li v-for="(h,index) in student.hobby" :key="index">
+        {{h}}
+      </li>
+    </ul>
   </div>
 
 </body>
 <script>
   Vue.config.productionTip = false
 
-
+  //用computed实现
   const vm = new Vue({
     el: '#root',
     data: {
       name: '清华',
       address: '北京',
       student: {
-      name: 'tom',
-      age: {
-        rAge: 40,
-        sAge: 18
-      },
-      friends: [
-        {name: 'dada', age: 12},
-        {name: 'dafa', age: 23}
-      ]
-    }
+        name: 'tom',
+        age: {
+          rAge: 40,
+          sAge: 18
+        },
+        hobby: [
+          '抽烟', '喝酒', '吃肥肉'
+        ],
+        friends: [
+          { name: 'dada', age: 12 },
+          { name: 'jerry', age: 23 }
+        ]
+      }
     },
     methods: {
       addSex() {
         // Vue.set(this.student,'sex','男')
         this.$set(this.student,'sex','男')
       }
-    },    
-
+    },  
   }
   )
 
