@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login</title>
+</head>
+<body>
+    <div class="container" id="Application">
+        <div class="container">
+            <div class="subTitle">加入我们，一起创建美好世界</div>
+            <h1 class="title">创建你的账号</h1>
+            <div v-for="(item, index) in fields" class="inputContainer">
+                <div class="filed">{{item.title}} <span v-if="item.required" style="color: red;">*</span></div>
+                <input class="input" :type="item.type"/>
+                <div class="tip" v-if="index==2">请确认密码需要大于六位</div>
+            </div>
+            <div class="subContainer">
+                <div class="setting">偏好设置</div>
+                <input type="checkbox" class="checkbox"/><label class="label">接收更新邮件</label>
+            </div>
+            <button class="btn">创建账号</button>
+        </div>
+    </div>
+</body>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14"></script>
+<script>
+  new Vue({
+    el: '#Application',
+    data: {
+      fields: [
+        { title: '用户名', type: 'text', required: true },
+        { title: '邮箱', type: 'email', required: false },
+        { title: '密码', type: 'password', required: true },
+      ]
+    }
+  });
+</script>
+
+<style>
+    .container {
+        margin: auto;
+        margin-top: 70px;
+        text-align: center;
+        width: 300px;
+    }
+    .subTitle {
+        color: gray;
+        font-size: 14px;
+    }
+    .title {
+        font-size: 45px;
+    }
+    .input {
+        width: 90%;
+    }
+    .inputContainer {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+    .subContainer {
+        text-align: left;
+    }
+    .field {
+        font-size: 14px;
+    }
+    .input {
+        border-radius: 6px;
+        height: 25px;
+        margin-top: 10px;
+        border-color: silver;
+        border-style: solid;
+        background-color: cornsilk;
+    }
+    .tip {
+        margin-top: 5px;
+        font-size: 12px;
+        color: gray;
+    }
+    .setting {
+        font-size: 9px;
+        color: black;
+    }
+    .label {
+        font-size: 12px;
+        margin-left: 5px;
+        height: 20px;
+        vertical-align: middle;
+    }
+    .checkbox {
+        height: 20px;
+        vertical-align: middle;
+    }
+    .btn {
+        border-radius: 10px;
+        height: 40px;
+        width: 300px;
+        margin-top: 30px;
+        background-color: deepskyblue;
+        border-color: blue;
+        color: white;
+    }
+</style>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="Application">
+        <input type="radio" value="page1" v-model="page"/>页面1
+        <input type="radio" value="page2" v-model="page"/>页面2
+        <component :is="page"></component>
+    </div>
+</body>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                page: "page1"
+            }
+        },
+    })
+    const page1 = {
+        template: `<div style="color: red">
+            页面组件1</div>`
+    }
+    const page2 = {
+        template: `<div style="color: blue">
+            页面组件2</div>`
+    }
+    app.component("page1", page1)
+    app.component("page2", page2)
+    app.mount("#Application")
+</script>
+</html>

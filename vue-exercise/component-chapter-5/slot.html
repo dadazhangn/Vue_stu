@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3"></script>
+    <title>Document</title>
+</head>
+<body>
+    <!-- <div id="Application">
+        <my-container></my-container>
+    </div> -->
+
+    <!-- <div id="Application">
+        <my-container2>
+            <template v-slot:header>
+                <h1>这是头部元素</h1>
+            </template>
+            <template v-slot:main>
+                <p>内容部分</p>
+                <p>内容部分</p>
+            </template>
+            <template v-slot:footer>
+                <p>这是尾部元素</p>
+            </template>
+        </my-container2>
+    </div> -->
+
+
+    <div id="Application">
+        <my-container2>
+            <template #header>
+                <h1>这是头部元素</h1>
+            </template>
+            <template #main>
+                <p>内容部分</p>
+                <p>内容部分</p>
+            </template>
+            <template #footer>
+                <p>这是尾部元素</p>
+            </template>
+        </my-container2>
+    </div>
+
+
+</body>
+<script>
+//    const app = Vue.createApp({
+
+//    })
+//    const containerComponent = {
+//         template: `<div style="border-style: solid; border-color: red; border-width: 10px;">
+//             <slot>插槽的默认内容</slot>
+//             </div>`
+//    }
+//    app.component("my-container", containerComponent)
+//    app.mount("#Application")
+
+
+const app = Vue.createApp({
+
+})
+const containerComponent = {
+     template: `<div>
+         <slot name="header"></slot>
+         </hr>
+         <slot name = "main"></slot>
+         </hr>
+         <slot name = "footer"></slot>
+         </hr>
+         </div>`
+}
+app.component("my-container2", containerComponent)
+app.mount("#Application")
+
+
+</script>
+</html>

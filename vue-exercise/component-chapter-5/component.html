@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="Application">
+        <my-alert title="按钮1"></my-alert>
+        <my-alert title="按钮2"></my-alert>
+    </div>
+    
+</body>
+</html>
+
+<script>
+    const app = Vue.createApp({})    
+    const alertComponent = {
+        data() {
+            return {
+                msg: "告警框提示",
+                count: 0
+            }
+        },
+        methods: {
+            click() {
+                alert(this.msg + this.count++)
+            }
+        },
+        props: ["title"],
+        template: `<div><button @click = "click">{{title}}</button></div>`
+    } 
+    app.component("my-alert", alertComponent)
+    app.mount("#Application")
+</script>
