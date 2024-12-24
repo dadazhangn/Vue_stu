@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="Application">
+        <my-list :count="5"></my-list>
+    </div>
+    <script>
+        const app = Vue.createApp({})
+        const listCom = {
+            props: {
+                count: Number
+            },
+            template: `<div style= "border: red solid: 10px;">
+                    <my-item v-for="i in this.count" :list-count="this.count" :index = "i"></my-item>
+                </div>`,
+            }
+            const itemCom = {
+                props: {
+                    listCount: Number,
+                    index:  Number
+                },
+                template: `<div style="border: blue solid 10px;">
+                    <my-label :list-count="this.listCount" :index ="this.index"></my-label>
+                    </div>`
+            }
+            const labelCom = {
+                props: {
+                    listCount: Number,
+                    index: Number
+                },
+                template: `<div>{{index}}//{{this.listCount}}</div>`
+            }
+            app.component('my-list', listCom)
+            app.component('my-item', itemCom)
+            app.component('my-label', labelCom)
+            app.mount('#Application')
+    </script>
+</body>
+</html>

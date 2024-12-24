@@ -3,72 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
-    <title>Document</title>
+    <title>Login Page</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #71b7e6, #9b59b6);
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .login-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .login-container h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .login-container input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .login-container button {
+            width: 100%;
+            padding: 10px;
+            background: #9b59b6;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .login-container button:hover {
+            background: #8e44ad;
+        }
+        .fireworks {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            display: none;
+        }
+    </style>
 </head>
 <body>
-    <!-- 组件生命周期 -->
-     <!-- 生命周期方法 -->
-    <div id="Application">
+    <div class="login-container">
+        <h1>Login</h1>
+        <input type="text" placeholder="Username" id="username">
+        <input type="password" placeholder="Password" id="password">
+        <button onclick="login()">Login</button>
     </div>
-  
+    <canvas class="fireworks" id="fireworks"></canvas>
+
+
 </body>
-<script>
-    const root = {
-        beforeCreate() {
-            console.log("组件即将创建前");
-            
-        },
-        created() {
-            console.log("组件创建完成");
-            
-        },
-        beforeMount() {
-            console.log("组件即将挂载前");
-            
-        },
-        mounted() {
-            console.log("组件挂载完成");
-            
-        },
-        beforeUpdate() {
-            console.log("组件即将更新前");
-            
-        },
-        updated() {
-            console.log("组件更新完成");
-            
-        },
-        activated() {
-            console.log("被缓存的组件激活时调用");
-            
-        },
-        deactivated() {
-            console.log("被缓存的组件停用时调用");
-            
-        },
-        beforeUnmount() {
-            console.log("被缓存的组件即将卸载前调用");
-            
-        },
-        unmounted() {
-            console.log("组件被卸载后调用");
-            
-        },
-        errorCaptured: (err, vm, info) => {
-            console.log("捕获到来自子组件的异常时调用");
-            
-        },
-        renderTracked({key, target, type}) {
-            console.log("虚拟DOM重新渲染时调用");
-            
-        },
-        renderTriggered({key, target, type}) {
-            console.log("虚拟DOM被触发渲染时调用");
-            
-        },
-    } 
-    const app = Vue.createApp(root)
-    app.mount("#Application")
-</script>
 </html>
+<script>
+    function showFireworks() {
+        const canvas = document.getElementById('fireworks');
+        const ctx = canvas.getContext('2d');
+        canvas.style.display = 'block';
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const fireworks = [];
+        const particles = [];
+
+        function random(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function createFirework(x, y) {
+            const firework = {
+                x: x,
+                y: y,
+                age: 0,
+                lifespan: random(50, 100),
+                color: `hsl(${random(0, 360)}, 100%, 50%)`
+            };
+            fireworks.push(firework);
+        }
+
+        function createParticle(x, y, color) {
+            const particle = {
+                x: x,
+                y: y,
+                vx: random(-5, 5),
+                vy: random(-5, 5),
+                age: 0,
+                lifespan: random(50, 100),
+                color: color
+            };
+            particles.push(particle);
+        }
+
+        function update() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            for (let i = fireworks.length - 1; i >= 0; i--) {
+                const firework = fireworks[i];
+                firework.age++;
+                if (firework.age > firework.lifespan) {
+                    fireworks.splice(i, 1);
+                    for (let j = 0; j < 200; j++) {
+                        createParticle(firework.x, firework.y, firework.color);
+                    }
+                } else {
+                    ctx.fillStyle = firework.color;
+                    ctx.beginPath();
+                    ctx.arc(firework.x, firework.y, 3, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const particle = particles[i];
+                particle.age++;
+                if (particle.age > particle.lifespan) {
+                    particles.splice(i, 1);
+                } else {
+                    particle.x += particle.vx;
+                    particle.y += particle.vy;
+                    ctx.fillStyle = particle.color;
+                    ctx.beginPath();
+                    ctx.arc(particle.x, particle.y, 2, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            requestAnimationFrame(update);
+        }
+
+        for (let i = 0; i < 5; i++) {
+            createFirework(random(0, canvas.width), random(0, canvas.height));
+        }
+        update();
+    }
+</script>

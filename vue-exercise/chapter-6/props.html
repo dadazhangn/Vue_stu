@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/vue@3"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="Application">
+        <my-comp :count="10"></my-comp>
+    </div>
+</body>
+<script>
+    const app = Vue.createApp({})
+    const comp1 = {
+        // props: {
+        //     // count: {
+        //         // 定义此属性的类型为数值类型
+        //         // type: Number,
+        //         // 设置此属性是否必传
+        //         // required: true,
+        //         // 设置默认值
+        //         // default: 10
+        //     // }
+        //     // 数值类型
+        //     count: Number,
+        //     // 字符串类型
+        //     count: String,
+        //     // 布尔类型
+        //     count: Boolean,
+        //     // 数组类型
+        //     count: Array,
+        //     // 对象类型
+        //     count: Object,
+        //     // 函数类型
+        //     count: Function,
+        //     // 自定义类型
+        //     count: {
+        //         type: Number,
+        //         default: 10
+        //     }
+        //     // 指定类型为字符串类型或数值类型
+        //     // count: [String, Number]
+        // },
+        // props:{
+        //     // count: {
+        //     //     default:function(){
+        //     //         return 10
+        //     //     }
+        //     // }
+        //     count: {
+        //         validator: function(value){
+        //             if (typeof(value) != 'number' || value < 10){
+        //                 return false
+        //             }
+        //             return true
+        //         }
+        //     }
+        // },
+        // props只读属性
+        // props: {
+        //     count: {
+        //         validator: function(value) {
+        //             if (typeof(value) != 'number' || value < 10){
+        //                 return false
+        //             }
+        //             return true
+        //         }
+        //     }
+        // },
+
+        props: {
+            count: {
+                validator: function(value) {
+                    if (typeof(value) != 'number' || value < 10){
+                        return false
+                    }
+                    return true
+                }
+            }
+        },
+
+        // data() {
+        //     return {
+        //         thisCount : 0
+        //     }
+        // },
+        data() {
+            return {
+                thisCount: this.count
+            }
+        },
+        // methods: {
+        //     click() {
+        //         this.thisCount++
+        //     }
+        // },
+        methods: {
+            click() {
+                this.count+=1
+            }
+        },
+        computed: {
+            innerCount: {
+                get() {
+                    return this.thisCount + this.count  
+                }
+            }
+        },
+        template: `<div><button @click="click">点击我</button><p>总点击次数：{{innerCount}}</p></div>`
+    }
+    app.component("my-comp", comp1)
+    app.mount("#Application")
+</script>
+</html>
