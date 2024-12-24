@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@3"></script>
+    <title>Document</title>
+</head>
+<body>
+    <!-- 组件生命周期 -->
+     <!-- 生命周期方法 -->
+    <div id="Application">
+    </div>
+  
+</body>
+<script>
+    const root = {
+        beforeCreate() {
+            console.log("组件即将创建前");
+            
+        },
+        created() {
+            console.log("组件创建完成");
+            
+        },
+        beforeMount() {
+            console.log("组件即将挂载前");
+            
+        },
+        mounted() {
+            console.log("组件挂载完成");
+            
+        },
+        beforeUpdate() {
+            console.log("组件即将更新前");
+            
+        },
+        updated() {
+            console.log("组件更新完成");
+            
+        },
+        activated() {
+            console.log("被缓存的组件激活时调用");
+            
+        },
+        deactivated() {
+            console.log("被缓存的组件停用时调用");
+            
+        },
+        beforeUnmount() {
+            console.log("被缓存的组件即将卸载前调用");
+            
+        },
+        unmounted() {
+            console.log("组件被卸载后调用");
+            
+        },
+        errorCaptured: (err, vm, info) => {
+            console.log("捕获到来自子组件的异常时调用");
+            
+        },
+        renderTracked({key, target, type}) {
+            console.log("虚拟DOM重新渲染时调用");
+            
+        },
+        renderTriggered({key, target, type}) {
+            console.log("虚拟DOM被触发渲染时调用");
+            
+        },
+    } 
+    const app = Vue.createApp(root)
+    app.mount("#Application")
+</script>
+</html>
