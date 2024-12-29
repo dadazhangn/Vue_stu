@@ -12,30 +12,55 @@
     </div>
     <script>
         const app = Vue.createApp({})
+        // const listCom = {
+        //     props: {
+        //         count: Number
+        //     },
+        //     template: `<div style= "border: red solid: 10px;">
+        //             <my-item v-for="i in this.count" :list-count="this.count" :index = "i"></my-item>
+        //         </div>`,
+        //     }
+        //     const itemCom = {
+        //         props: {
+        //             listCount: Number,
+        //             index:  Number
+        //         },
+        //         template: `<div style="border: blue solid 10px;">
+        //             <my-label :list-count="this.listCount" :index ="this.index"></my-label>
+        //             </div>`
+        //     }
+        //     const labelCom = {
+        //         props: {
+        //             listCount: Number,
+        //             index: Number
+        //         },
+        //         template: `<div>{{ index }} {{ this.listCount}  } </div>`     }
+
+
+        // 数据注入
         const listCom = {
             props: {
-                count: Number
+            count: Number    
             },
-            template: `<div style= "border: red solid: 10px;">
+            provide() {
+                return {
+                    listCount: this.count
+                }
+            },
+             template: `<div style= "border: red solid: 10px;">
                     <my-item v-for="i in this.count" :list-count="this.count" :index = "i"></my-item>
                 </div>`,
-            }
-            const itemCom = {
-                props: {
-                    listCount: Number,
-                    index:  Number
-                },
-                template: `<div style="border: blue solid 10px;">
-                    <my-label :list-count="this.listCount" :index ="this.index"></my-label>
-                    </div>`
-            }
-            const labelCom = {
-                props: {
-                    listCount: Number,
-                    index: Number
-                },
-                template: `<div>{{index}}//{{this.listCount}}</div>`
-            }
+        }
+        const itemCom = {
+            props: {
+                index: Number
+            },
+            inject: ['listCount'],
+            template: `<div">
+                {{index}}}//{{this.listCount}}
+                </div>`
+        }
+
             app.component('my-list', listCom)
             app.component('my-item', itemCom)
             app.component('my-label', labelCom)

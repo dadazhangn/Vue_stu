@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div id="Application">
+        <input v-getfocus>
+    </div>
+    <script>
+        const app = Vue.createApp({})
+        app.directive('getfocus', {
+            // 当绑定此指令的元素被挂载时调用
+            mounted(element) {
+                console.log('组件获得了焦点');
+                element.focus()
+            },
+        })
+        app.mount('#Application')
+    </script>
+</body>
+</html>
