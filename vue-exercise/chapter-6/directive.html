@@ -19,6 +19,23 @@
                 element.focus()
             },
         })
+        // 采用局部注册的方式自定义指令
+        const sub = {
+            directives: {
+                // 组件内部的自定义指令
+                getfocus: {
+                    mounted(el) {
+                        el.focus()
+                    }
+                }
+            },
+            // 组件挂载
+            mounted() {
+                console.log(this.version);
+                
+            }
+        }
+        app.component('sub-com', sub)
         app.mount('#Application')
     </script>
 </body>
