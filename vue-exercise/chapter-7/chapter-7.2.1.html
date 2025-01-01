@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div id="Application"></div>
+</body>
+<script>
+    const App = Vue.createApp({
+        setup() {
+            // 定义响应式独立值
+            let a = Vue.ref(1)
+            let b = Vue.ref(2)
+            let sum = Vue.computed({
+                set(value) {
+                    a.value = value
+                    b.value = value
+                },
+                get() {
+                    return a.value + b.value
+                }
+            })
+            // myObject会自动包装对象，其中定义value属性为原始值
+            function click() {
+                a.value+=1
+                b.value+=2
+                if (sum.value > 10) {
+                    sum.value = 0
+                }
+            }
+            // 返回的数据myObject在模板中使用时已经是独立值
+            return {
+                sum,
+                click
+            }
+        },
+        template: `<h1>测试数据: {{sum}}</h1>
+            <button @click="click">点击</button>`
+    })
+    App.mount('#Application');
+</script>
+</html>
