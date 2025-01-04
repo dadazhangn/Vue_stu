@@ -98,33 +98,6 @@
     
 
 
-=======
-    // 定义处理器
-    handleA = {
-        get(target, prop) {
-            console.log(`获取A: ${prop}的值`);
-            return target[prop]
-        },
-        set(target, prop, value) {
-            console.log(`设置A: ${prop}的值为${value}`);   
-        }
-    }
-    handleB = {
-        get(target, prop) {
-            console.log(`获取B: ${prop}的值`);
-            return target[prop]
-        },
-        set(target, prop, value) {
-            console.log(`设置B: ${prop}的值为${value}`);   
-        }
-    }
-    
-    let pa = new Proxy(a, handleA)
-    let pb = new Proxy(b, handleB)
-    let sum = pa.value + pb.value;
-    pa.value = 3;
-    pb.value = 4;
-    
->>>>>>> 8b4eb9d4d6385709bb612f9997d72d3172be023a
+
 </script>
 </html>
