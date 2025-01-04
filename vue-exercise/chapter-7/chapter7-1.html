@@ -19,6 +19,7 @@
     // console.log(sum);
 
     // 定义对象数据
+<<<<<<< HEAD
     // let a = {
     //     value: 1
     // };
@@ -52,12 +53,15 @@
     // pb.value = 4;
     
     // 数据对象
+=======
+>>>>>>> 8b4eb9d4d6385709bb612f9997d72d3172be023a
     let a = {
         value: 1
     };
     let b = {
         value: 2
     };
+<<<<<<< HEAD
     // 定义触发器用于刷新数据
     let trigger = null;
     // 数据变量的处理器，当数据变化时，调用触发器刷新
@@ -94,5 +98,33 @@
     
 
 
+=======
+    // 定义处理器
+    handleA = {
+        get(target, prop) {
+            console.log(`获取A: ${prop}的值`);
+            return target[prop]
+        },
+        set(target, prop, value) {
+            console.log(`设置A: ${prop}的值为${value}`);   
+        }
+    }
+    handleB = {
+        get(target, prop) {
+            console.log(`获取B: ${prop}的值`);
+            return target[prop]
+        },
+        set(target, prop, value) {
+            console.log(`设置B: ${prop}的值为${value}`);   
+        }
+    }
+    
+    let pa = new Proxy(a, handleA)
+    let pb = new Proxy(b, handleB)
+    let sum = pa.value + pb.value;
+    pa.value = 3;
+    pb.value = 4;
+    
+>>>>>>> 8b4eb9d4d6385709bb612f9997d72d3172be023a
 </script>
 </html>
