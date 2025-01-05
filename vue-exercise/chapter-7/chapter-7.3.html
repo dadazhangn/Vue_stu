@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div id="Application">
+        <com name="组件名"></com>
+    </div>
+</body>
+<script>
+    const App = Vue.createApp({})
+
+    // App.component("com",{
+    //     setup(props, context) {
+    //         let data = "setup的数据"
+    //         console.log(props.name);
+    //         // 属性
+    //         console.log(context.attrs);
+    //         // 插槽
+    //         console.log(context.slots);
+    //         // 触发事件
+    //         console.log(context.emit);
+    //         // return {
+    //         //     data
+    //         // }
+    //         return () => Vue.h('div', [data])
+    //     },
+    //     props: {
+    //         name: String
+    //     },
+    //     template: `
+    //         <div>
+    //             <p>{{data}}</p>
+    //         </div>
+    //     `
+    // })
+    // App.mount('#Application')
+
+    // 定义生命组件方法
+    App.component("com", {
+        setup(props, context) {
+            let data = "setup的数据"
+            // 设置函数参数的调用时机与mounted相同
+            Vue.onMounted(() => {
+                console.log("setup定义的mounted");
+                
+            })
+            return () => Vue.h('div', [data])
+        },
+        props: {
+            name: String
+        },
+        mounted() {
+            console.log("组件内定义的mounted");
+        },
+    })
+
+    App.mount('#Application')
+
+</script>
+</html>

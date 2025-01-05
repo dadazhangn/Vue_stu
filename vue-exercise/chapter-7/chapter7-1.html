@@ -19,7 +19,7 @@
     // console.log(sum);
 
     // 定义对象数据
-<<<<<<< HEAD
+
     // let a = {
     //     value: 1
     // };
@@ -95,32 +95,96 @@
     // console.log(sum);
     
        // 定义处理器
-       handleA = {
-        get(target, prop) {
-            console.log(`获取A: ${prop}的值`);
-            return target[prop]
-        },
-        set(target, prop, value) {
-            console.log(`设置A: ${prop}的值为${value}`);   
-        }
-    }
-    handleB = {
-        get(target, prop) {
-            console.log(`获取B: ${prop}的值`);
-            return target[prop]
-        },
-        set(target, prop, value) {
-            console.log(`设置B: ${prop}的值为${value}`);   
-        }
-    }
+    //    handleA = {
+    //     get(target, prop) {
+    //         console.log(`获取A: ${prop}的值`);
+    //         return target[prop]
+    //     },
+    //     set(target, prop, value) {
+    //         console.log(`设置A: ${prop}的值为${value}`);   
+    //     }
+    // }
+    // handleB = {
+    //     get(target, prop) {
+    //         console.log(`获取B: ${prop}的值`);
+    //         return target[prop]
+    //     },
+    //     set(target, prop, value) {
+    //         console.log(`设置B: ${prop}的值为${value}`);   
+    //     }
+    // }
     
-    let pa = new Proxy(a, handleA)
-    let pb = new Proxy(b, handleB)
-    let sum = pa.value + pb.value;
-    pa.value = 3;
-    pb.value = 4;
+    // let pa = new Proxy(a, handleA)
+    // let pb = new Proxy(b, handleB)
+    // let sum = pa.value + pb.value;
+    // pa.value = 3;
+    // pb.value = 4;
 
 
+    // const App = Vue.createApp({
+    //     setup() {
+    //         let a = Vue.ref(1);
+    //         Vue.watchEffect(() => {
+    //             // 当a变化时，执行当前函数
+    //             console.log("a变化了"); 
+    //             a.value += 1;
+    //         })
+    //         // 手动停止监听
+    //         stop();
+    //         a.value = 2;
+    //         return {
+    //             a
+    //         }
+    //     }
+    // })
+
+    // const App = Vue.createApp({
+    //     setup() {
+    //         let a = Vue.reactive({
+    //             data: 0
+    //         });
+    //         let b = Vue.ref(0);
+    //         Vue.watch(()=> {
+    //             // 监听a对象的data属性变化
+    //             return a.data
+    //         }, (value, old) => {
+    //             // 新旧值都可以获取
+    //             console.log(`新值: ${value}, 旧值: ${old}`);
+    //         })
+    //         a.data = 1;
+    //         // 可以直接监听ref对象
+    //         Vue.watch(b, (value, old) => {
+    //               // 新旧值都可以获取
+    //               console.log(`新值: ${value}, 旧值: ${old}`);
+    //         })
+    //         b.value = 3;
+
+    //     },
+    //     template: `<h1>测试数据: {{sum}}</h1>`
+    // })
+
+    // APP.mount('#Application');
+
+    // const App = Vue.createApp({
+    //     setup() {
+    //         let a = Vue.reactive({
+    //             data: 0
+    //         });
+    //         let b = Vue.ref(0);
+    //       Vue.watch([() => {
+    //         // 监听a对象的data属性变化
+    //         return a.data
+    //       }, b], ([valueA, valueB], [oldA, oldB])=> {
+    //         // 新旧值都可以获取
+    //         console.log(`新值: ${valueA}, 旧值: ${oldA}`);
+    //         console.log(`新值: ${valueB}, 旧值: ${oldB}`);
+    //       })
+    //     },
+    //     template: `<h1>测试数据: {{sum}}</h1>`
+    // })
+
+
+    
 
 </script>
 </html>
