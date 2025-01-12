@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+<body>
+    <div id="Application">
+        <div :class="cls" @click="run"></div>
+    </div>
+</body>
+<style>
+    /* .demo {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+        transition-property: width, height, background-color;
+        transition-duration: 1s;
+        transition-timing-function: linear;
+        transition-delay: 2s;
+    }
+    .demo-ani {
+        width: 200px;
+        height: 200px;
+        background-color: blue;
+        transition: width 2s, height 2s, background-color 2s;
+    } */
+
+    @keyframes animation1 {
+        /* 0% {
+            background-color: red;
+            width: 100px;
+            height: 100px;
+        }
+        25% {
+            background-color: orchid;
+            width: 200px;
+            height: 200px;
+        }
+        75% {
+            background-color: green;
+            width: 150px;
+            height: 150px;
+        }
+        100% {
+            background-color: blue;
+            width: 200px;
+            height: 200px;
+        } */
+
+        from {
+            background-color: red;
+            width: 100px;
+            height: 100px;
+        }
+        to {
+            background-color: blue;
+            width: 200px;
+            height: 200px;
+        }
+    }
+    .demo {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+    }
+    .demo-ani {
+        /* animation: animation1 4s linear;
+        width: 200px;
+        height: 200px;
+        background-color: blue; */
+
+        /* 设置关键帧动画名称 */
+        animation-name: animation1;
+        /* 设置动画时长 */
+        animation-duration: 3s;
+        /* 设置动画播放方式：渐入渐出 */
+        animation-timing-function: ease-in-out;
+        /* 设置动画播放的方向 */
+        animation-direction: alternate;
+        /* 设置动画播放次数 */
+        animation-iteration-count: infinite;
+        /* 设置动画播放状态 */
+        animation-play-state: running;
+        /* 设置动画播放延迟时间 */
+        animation-delay: 1s;
+        /* 设置动画播放结束应用的元素样式 */
+        animation-fill-mode: forwards;
+        width: 200px;
+        height: 200px;
+        background-color: blue;
+    }
+
+
+
+</style>
+<script>
+    const app = Vue.createApp({
+        data() {
+            return {
+                cls: "demo"
+            }
+        },
+        methods: {
+            run() {
+                if (this.cls === "demo") {
+                    this.cls = "demo-ani"
+                } else {
+                    this.cls = "demo"
+                }
+            }
+        },
+    })
+    app.mount("#Application")
+</script>
+</html>
