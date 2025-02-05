@@ -3,10 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://unpkg.com/vue@3"></script>
     <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        .content {
+            margin-bottom: 20px;
+        }
+        .content input[type="radio"] {
+            margin-right: 10px;
+        }
+        .content input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+        .list-enter-active, .list-leave-active {
+            transition: all 0.5s;
+        }
+        .list-enter, .list-leave-to {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+    </style>
 </head>
 <body>
-    
+    <div id="Application">
+        <div class="container">
+            <div class="content">
+                <input type="radio" :value="-1" v-model="sexFilter"/>全部
+                <input type="radio" :value="0" v-model="sexFilter"/>男
+                <input type="radio" :value="1" v-model="sexFilter"/>女
+            </div>
+            <div class="content">搜索: <input type="text" v-model="searchKey"/></div>
+            <div class="content">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>姓名</th>
+                            <th>性别</th>
+                        </tr>
+                    </thead>
+                    <transition-group name="list" tag="tbody">
+                        <tr v-for="(data, index) in filteredData" :key="data.name">
+                            <td>{{data.name}}</td>
+                            <td>{{data.sex == 0 ? '男' : '女'}}</td>
+                        </tr>
+                    </transition-group>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        const App = Vue.createApp({
+            data() {
+                return {
+                    sexFilter: -1,
+                    searchKey: '',
+                    showData: [
+                        { name: '张三', sex: 0 },
+                        { name: '李四', sex: 1 },
+                        { name: '王五', sex: 0 },
+                        { name: '赵六', sex: 1 }
+                    ]
+                }
+            },
+            computed: {
+                filteredData() {
+                    return this.showData.filter(data => {
+                        return (this.sexFilter === -1 || data.sex === this.sexFilter) &&
+                               data.name.includes(this.searchKey);
+                    });
+                }
+            }
+        });
+        App.mount('#Application');
+    </script>
 </body>
 </html>
