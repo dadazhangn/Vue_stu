@@ -9,8 +9,9 @@
 <body>
     <div id="Application">
         <button @click="click">显示/隐藏</button>
-        <transition name="ani">
+        <transition name="ani" model="in-out">
             <div v-if="show" class="demo"></div>
+            <div v-else class="demo2"></div>
         </transition>
     </div>
 </body>
@@ -18,25 +19,36 @@
     const App = Vue.createApp({
         data() {
             return {
-                show: true
+                show: false
             }
         },
         methods: {
             click() {
                 this.show = !this.show
             }
-        }
+        },
     })
+
     App.mount('#Application')
 </script>
 <style>
+    .demo{
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+    }
+    .demo2 {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+    }
     .ani-enter-from {
         width: 0px;
         height: 0px;
         background-color: red;
     }
     .ani-enter-active {
-        transition: width 2s, height 2s background-color 2s;
+        transition: width 3s, height 3s background-color 3s;
     }
     .ani-enter-to {
         width: 100px;
@@ -49,18 +61,12 @@
         background-color: blue;
     }
     .ani-leave-active {
-        transition: width 2s, height 2s background-color 3s;
+        transition: width 3s, height 3s background-color 3s;
     }
     .ani-leave-to {
         width: 0px;
         height: 0px;
         background-color: red;
-    }
-
-    .demo {
-        width: 100px;
-        height: 100px;
-        background-color: blue;
     }
 </style>
 </html>
