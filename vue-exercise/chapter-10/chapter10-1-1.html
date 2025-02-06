@@ -10,6 +10,8 @@
     <script src="https://unpkg.com/vue@3"></script>
     <!-- 引入 Element Plus 的 JavaScript 文件 -->
     <script src="https://unpkg.com/element-plus"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-plus/lib/index.full.js"></script>
 </head>
 <body>
     <div id="Application" style="text-align: center;">
@@ -42,17 +44,18 @@
             <el-button type="primary" icon="el-icon-delete"></el-button>
             <el-button type="primary" icon="el-icon-search">图标在前</el-button>
             <el-button type="primary">图标在后<i class="el-icon-upload el-icon--right"></i></el-button>
-        </div>
-    </div><hr>
-    <div>
+        </div><br>
         <div>
-            <el-tag>普通标签</el-tag>
-            <el-tag type="success">成功标签</el-tag>
+            <el-tag type="primary">Tag 1</el-tag>
+            <el-tag type="success">Tag 2</el-tag>
+            <el-tag type="info">Tag 3</el-tag>
+            <el-tag type="warning">Tag 4</el-tag>
+            <el-tag type="danger">Tag 5</el-tag>
             <el-tag :hit="true">描边标签</el-tag>
-            <el-tag color="purple">紫色背景标签</el-tag>
-
-        </div>
+            <el-tag color="purple">紫色标签</el-tag>
+          </div>
     </div>
+
 </body>
 <script>
     const App = Vue.createApp({
