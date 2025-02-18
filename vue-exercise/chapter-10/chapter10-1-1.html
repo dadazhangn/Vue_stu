@@ -52,7 +52,18 @@
             <el-tag type="warning">Tag 4</el-tag>
             <el-tag type="danger">Tag 5</el-tag>
             <el-tag :hit="true">描边标签</el-tag>
-            <el-tag color="orange">紫色标签</el-tag>
+            <el-tag color="purple">紫色标签</el-tag>
+          </div><br>
+          <div>
+            <el-select :multiple="true"
+            :clearable="true"
+            v-model="value">
+                <el-option v-for="item in options"
+                    :value="item.value"
+                    :label="item.label"
+                    :key="item.value">
+                </el-option>
+        </el-select>
           </div>
     </div>
 
