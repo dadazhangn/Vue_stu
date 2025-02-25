@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 引入 Element Plus 的 CSS 文件 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-plus/dist/index.css">
+    <!-- 引入 Vue 3 -->
+    <script src="https://unpkg.com/vue@3"></script>
+    <!-- 引入 Element Plus 的 JavaScript 文件 -->
+    <script src="https://unpkg.com/element-plus"></script>
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-plus/lib/index.full.js"></script>
+</head>
+</head>
+<body>
+    <div id="Application">
+        <div>
+            <el-menu mode="horizontal">
+                <el-menu-item index="1">index</el-menu-item>
+                <!-- <el-submenu index="2">
+                    <template #title>广场</template>
+                    <el-menu-item index="2-1">music</el-menu-item>
+                    <el-menu-item index="2-2">video</el-menu-item>
+                    <el-menu-item index="2-3">game</el-menu-item>
+                    <el-submenu index="2-4">
+                        <template #title>sport</template>
+                        <el-menu-item index="2-4-1">football</el-menu-item>
+                        <el-menu-item index="2-4-2">ping pang</el-menu-item>
+                        <el-menu-item index="2-4-3">score</el-menu-item>
+                    </el-submenu>
+                </el-submenu>
+                <el-menu-item index="3" :disabled="true">setting</el-menu-item>
+                <el-menu-item index="4">profile</el-menu-item> -->
+            </el-menu>
+
+        </div><br>
+        <div>
+            <el-tabs type="border-card">
+                <el-tab-pane label="page1" name="1">page1</el-tab-pane>
+                <el-tab-pane label="page2" name="2">page2</el-tab-pane>
+                <el-tab-pane label="page3" name="3">page3</el-tab-pane>
+                <el-tab-pane label="page4" name="4">page4</el-tab-pane>
+            </el-tabs>
+        </div><br>
+        <div style="margin: 300px;">
+            <el-button @click="drawer=true" type="primary">
+                point
+            </el-button>
+        </div>
+        <el-drawer title="抽屉" v-model="drawer" direction="ltr">demo</el-drawer>
+    </div>
+</body>
+<script>
+    const App = Vue.createApp({
+        data() {
+            return {
+                count: 0,
+                drawer: "dadaqw"
+            }
+        },
+        methods: {
+            clickButton() {
+                this.count++
+            }
+        }
+    })
+    App.use(ElementPlus)
+    App.mount('#Application')
+</script>
+</html>
