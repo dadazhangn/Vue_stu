@@ -10,7 +10,17 @@ const Router = createRouter({
             path: '/login', component: Login, name: 'login'
         },
         {
-            path: '/home', component: Home, name: 'home'
+            path: '/home', 
+            component: Home, 
+            name: 'home',
+            children: [
+                {
+                    path:'order/:type',  //0 normal 1 exception
+                    component: Order,
+                    name: 'order'
+                }
+            ],
+            redirect:'/home/order/0'
         },
     ]
 })
