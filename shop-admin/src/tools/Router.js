@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import Home from "../components/home/Home.vue";
 import Login from "../components/login/Login.vue";
 import Order from "../components/order/Order.vue";
-import Store from "./Storage.js";
+// import Store from "./Storage.js";
 
 const Router = createRouter({
     history: createWebHashHistory(),
@@ -26,14 +26,14 @@ const Router = createRouter({
     ]
 })
 
-Router.beforeEach((from)=> {
-    let isLogin = Store.getters.isLogin
-    if (isLogin || from.path == '/login') {
-        return true
-    } else {
-        return {name: 'login'}
-    }
-})
+// Router.beforeEach((from)=> {
+//     let isLogin = Store.getters.isLogin
+//     if (isLogin || from.path == '/login') {
+//         return true
+//     } else {
+//         return {name: 'login'}
+//     }
+// })
 
 
 export default Router;
